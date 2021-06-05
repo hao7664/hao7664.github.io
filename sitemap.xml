@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://haosong.name/tags/index.html</loc>
+    
+    <lastmod>2021-06-05</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://haosong.name/2021/05/30/viewing-debug-level-logs-from-ios-simulator/</loc>
     
     <lastmod>2021-05-30</lastmod>
@@ -32,7 +39,7 @@
 
   <url>
     <loc>https://haosong.name/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -40,77 +47,77 @@
   
   <url>
     <loc>https://haosong.name/tags/git/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/tags/gpg/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/tags/mac/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/tags/hexo/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/tags/swift/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/tags/c/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/tags/variadic-function/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/tags/va-list/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/tags/ios/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/tags/debug/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/tags/os-log/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -119,14 +126,14 @@
   
   <url>
     <loc>https://haosong.name/categories/develop/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://haosong.name/categories/main/</loc>
-    <lastmod>2021-05-31</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
