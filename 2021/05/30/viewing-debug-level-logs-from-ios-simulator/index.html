@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="mask-icon" href="/logo.svg" color="#222">
+  <link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;haosong.name&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Pisces&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:false,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script>
+<meta name="description" content="Unified logging system (aka os_log)The unified logging system (aka os_log) is the recommended way of logging by Apple. It’s pretty easy to create a logger and log messages at different levels: 1234567">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Viewing debug level logs from iOS simulator">
+<meta property="og:url" content="https://haosong.name/2021/05/30/viewing-debug-level-logs-from-ios-simulator/index.html">
+<meta property="og:site_name" content="haosong&#x2F;notes.git">
+<meta property="og:description" content="Unified logging system (aka os_log)The unified logging system (aka os_log) is the recommended way of logging by Apple. It’s pretty easy to create a logger and log messages at different levels: 1234567">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-30T16:38:09.000Z">
+<meta property="article:modified_time" content="2021-05-30T16:38:56.784Z">
+<meta property="article:author" content="Hao Song">
+<meta property="article:tag" content="ios">
+<meta property="article:tag" content="debug">
+<meta property="article:tag" content="os_log">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://haosong.name/2021/05/30/viewing-debug-level-logs-from-ios-simulator/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;haosong.name&#x2F;2021&#x2F;05&#x2F;30&#x2F;viewing-debug-level-logs-from-ios-simulator&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;30&#x2F;viewing-debug-level-logs-from-ios-simulator&#x2F;&quot;,&quot;title&quot;:&quot;Viewing debug level logs from iOS simulator&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Viewing debug level logs from iOS simulator | haosong/notes.git</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="haosong/notes.git" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">haosong/notes.git</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">repository of my random notes</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unified-logging-system-aka-os-log"><span class="nav-number">1.</span> <span class="nav-text">Unified logging system (aka os_log)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Streaming-debug-logs-from-the-simulator-to-Terminal"><span class="nav-number">2.</span> <span class="nav-text">Streaming debug logs from the simulator to Terminal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">3.</span> <span class="nav-text">References</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hao Song</p>
+  <div class="site-description" itemprop="description">yet another software engineer</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/NSHaoSong" title="Github → https:&#x2F;&#x2F;github.com&#x2F;NSHaoSong" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://haosong.name/2021/05/30/viewing-debug-level-logs-from-ios-simulator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hao Song">
+      <meta itemprop="description" content="yet another software engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haosong/notes.git">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Viewing debug level logs from iOS simulator
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-05-30 09:38:09 / Modified: 09:38:56" itemprop="dateCreated datePublished" datetime="2021-05-30T09:38:09-07:00">2021-05-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/develop/" itemprop="url" rel="index"><span itemprop="name">develop</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Unified-logging-system-aka-os-log"><a href="#Unified-logging-system-aka-os-log" class="headerlink" title="Unified logging system (aka os_log)"></a>Unified logging system (aka <code>os_log</code>)</h2><p>The <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/os/logging">unified logging system</a> (aka <code>os_log</code>) is the recommended way of logging by Apple. It’s pretty easy to create a logger and log messages at different levels:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"><span class="keyword">import</span> os.log</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Logger</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> button <span class="operator">=</span> <span class="type">Logger</span>(subsystem: <span class="string">&quot;name.haosong.OSLogDemo&quot;</span>, category: <span class="string">&quot;Button&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">VStack</span> &#123;</span><br><span class="line">            <span class="type">Button</span>(<span class="string">&quot;Debug&quot;</span>, action: &#123;</span><br><span class="line">                <span class="type">Logger</span>.button.log(level: .debug, <span class="string">&quot;debug log&quot;</span>)</span><br><span class="line">            &#125;).padding()</span><br><span class="line">            </span><br><span class="line">            <span class="type">Button</span>(<span class="string">&quot;Info&quot;</span>, action: &#123;</span><br><span class="line">                <span class="type">Logger</span>.button.log(level: .info, <span class="string">&quot;info log&quot;</span>)</span><br><span class="line">            &#125;).padding()</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>On macOS, we can view the log messages using the Console app. But the <code>debug</code> level messages from iOS simulators are not visible even after turning on the <code>Include Info Messages</code> and <code>Include Debug Messages</code> in <code>Action</code> menu of the Console app. </p>
+<p>This could be <a target="_blank" rel="noopener" href="https://developer.apple.com/forums/thread/82736?answerId=347949022#347949022">a bug of the simulator</a>, because <code>debug</code> level messages from iOS devices are not affected in the Console app. </p>
+<h2 id="Streaming-debug-logs-from-the-simulator-to-Terminal"><a href="#Streaming-debug-logs-from-the-simulator-to-Terminal" class="headerlink" title="Streaming debug logs from the simulator to Terminal"></a>Streaming debug logs from the simulator to Terminal</h2><p>The workaround is to stream the log from the simulator to Terminal:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># if the simulator is already booted</span></span><br><span class="line">$ xcrun simctl spawn booted <span class="built_in">log</span> stream --level debug --predicate <span class="string">&#x27;subsystem == &quot;name.haosong.OSLogDemo&quot;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># or you can use the device UUID</span></span><br><span class="line">$ xcrun simctl spawn &lt;DEVICE-UUID&gt; <span class="built_in">log</span> stream --level debug --predicate <span class="string">&#x27;subsystem == &quot;name.haosong.OSLogDemo&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.apple.com/forums/thread/82736?answerId=347949022#347949022">Console app not showing info and debug logs | Apple Developer Forums</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.iosdev.recipes/simulator/os_log/">Using os_log and log streaming on iOS</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.avanderlee.com/workflow/oslog-unified-logging/">OSLog and Unified logging as recommended by Apple - SwiftLee</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Hao Song
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://haosong.name/2021/05/30/viewing-debug-level-logs-from-ios-simulator/" title="Viewing debug level logs from iOS simulator">https://haosong.name/2021/05/30/viewing-debug-level-logs-from-ios-simulator/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ios/" rel="tag"># ios</a>
+              <a href="/tags/debug/" rel="tag"># debug</a>
+              <a href="/tags/os-log/" rel="tag"># os_log</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/29/how-to-call-c-variadic-functions-from-swift/" rel="prev" title="How to call C variadic functions from Swift?">
+                  <i class="fa fa-chevron-left"></i> How to call C variadic functions from Swift?
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  <script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hao Song</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{&quot;enable&quot;:true,&quot;api&quot;:null,&quot;apikey&quot;:&quot;V4bafH179Y3ki6priDqt0FRtd1UOvzhynurLgPfzoN4UU21BNM87Re6DawhgZnI7&quot;,&quot;shortname&quot;:&quot;haosblog&quot;,&quot;js&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;disqusjs@1.3.0&#x2F;dist&#x2F;disqus.js&quot;}</script>
+<script src="/js/third-party/comments/disqusjs.js"></script>
+
+</body>
+</html>
